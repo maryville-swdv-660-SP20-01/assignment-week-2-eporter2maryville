@@ -4,14 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 djangorestframework = "*"
 "psycopg2-binary" = "*"
 django-cors-headers = "*"
+django = "*"
 
 [dev-packages]
 pytest = "*"
 pytest-django = "*"
 
 [requires]
-
