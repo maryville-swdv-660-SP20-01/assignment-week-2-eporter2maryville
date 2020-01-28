@@ -8,10 +8,15 @@ django = "*"
 djangorestframework = "*"
 "psycopg2-binary" = "*"
 django-cors-headers = "*"
+pytest = "*"
+pytest-django = "*"
 
 [dev-packages]
 pytest = "*"
 pytest-django = "*"
+django = "*"
+pylint = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
 
-[requires]
-python_version = "3.6"
+
