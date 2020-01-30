@@ -43,12 +43,13 @@ class GameModelTests( TestCase ):
 
     def test_guesses_taken_should_increment_if_letter_not_in_word( self ):
         expectedGuessesTaken = 2
+        startingGuesses = 1
         game = Game( 
             word= 'TESTWORD',
             guessed_word_state= ['','','S','','W','O','R',''],
             letters_guessed = ['S', 'A', 'W', 'O', 'R','C'],
             guesses_allowed= 5, 
-            guesses_taken= expectedGuessesTaken
+            guesses_taken= startingGuesses
         )
 
         game.handleGuess('X')
