@@ -194,7 +194,19 @@ class GameModelTests( TestCase ):
         pass
 
     def test_is_game_over_is_true_if_no_guesses_left( self ):
-        pass
+        startingGuesses = 4
+        game = Game( 
+            word= 'TESTWORD',
+            guessed_word_state= ['','','S','','W','O','R',''],
+            letters_guessed = ['S', 'A', 'W', 'O', 'R','C'],
+            guesses_allowed= 5, 
+            guesses_taken= startingGuesses
+        )
+
+        guess = 'Q'
+        game.handleGuess(guess)
+        self.assertEquals( game.guesses_allowed, game.guesses_taken )
+        self.assertEquals(game.is_game_over, True)
 
     def test_is_game_over_is_true_if_all_letters_guessed( self ):
         pass
