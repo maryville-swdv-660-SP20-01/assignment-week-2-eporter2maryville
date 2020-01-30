@@ -173,24 +173,11 @@ class GameModelTests( TestCase ):
         self.assertEquals( numberGuesses, guessesLeft )
         self.assertEquals(game.is_game_over, False)
     
-    def test_is_game_over_is_false_if_not_all_letters_guessed( self ):
-        expectedGuessesTaken = 2
-        game = Game( 
-            word= 'TESTWORD',
-            guessed_word_state= ['','','S','','W','O','R',''],
-            letters_guessed = ['S', 'A', 'W', 'O', 'R','C'],
-            guesses_allowed= 5, 
-            guesses_taken= expectedGuessesTaken
-        )
-
-        game.handleGuess('T')
-        self.assertEquals( expectedGuessesTaken, game.guesses_taken )
-        self.assertEquals(game.is_game_over, False)
     # TODO: add tests
     # HINT: considering adding a fixture or other widely scoped variables if you feel ]hat will
     #  make this easier
 
-    
+    def test_is_game_over_is_false_if_not_all_letters_guessed( self ):
         pass
 
     def test_is_game_over_is_true_if_no_guesses_left( self ):
