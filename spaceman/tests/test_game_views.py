@@ -12,6 +12,7 @@ class GameApiViewTests( TestCase ):
 
     def setUp( self ):
         self.expected_game_data = {
+            'word': 'TESTWORD',
             'guesses_allowed': 5,
             'guesses_taken': 3,
             'letters_guessed': ['A'],
@@ -31,6 +32,7 @@ class GameApiViewTests( TestCase ):
 
         self.request_factory = APIRequestFactory()
         self.mock_get_request = self.request_factory.get('dummy')
+        self.mock_put_request = self.request_factory.put('dummy')
 
 
     ### POST (create game) view
@@ -61,7 +63,7 @@ class GameApiViewTests( TestCase ):
             mock_get.return_value = self.mock_game
 
             mock_request = self.request_factory.put( 'dummy', json.dumps({'letters_guessed': ['A']}), content_type='application/json')
-
+            
             response = game_view( mock_request, 25 )
             
             mock_get.assert_called_with( pk=25 )
@@ -69,7 +71,12 @@ class GameApiViewTests( TestCase ):
 
 
     ### GET solution view
-    # TODO: Add tests for Getting a game's solution
-    # HINT: remember the `setUp` fixture that is in this test class, 
-    #   it constructs things that might be useful
+    def test_404_response_when_game_not_found ( self ):
+        with patch.object( Game.objects, 'get') as mock_get:
+            mock_get.side_effect = Game.DoesNotExist
+            
+            response = game_view( self.mock_get_request, 25 )
+            self.assertEquals( response.status_code, 404 )
 
+    def game_solution( request, game_id = None ):
+        self.assertEquals(response.data['solution'] , 'BATMAN')
